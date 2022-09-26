@@ -8,14 +8,8 @@ import EmojiPicker from "../components/common/EmojiPicker";
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import {
-  Box,
-  Button,
-  Divider,
-  IconButton,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
+import Kanban from "../components/common/Kanban";
 
 let timer = 0;
 let timeout = 500;
@@ -26,7 +20,7 @@ const Board = () => {
   const { boardId } = useParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [sections, setSections] = useState("");
+  const [sections, setSections] = useState([]);
   const [isFavourite, setIsFavourite] = useState(false);
   const [icon, setIcon] = useState("");
 
@@ -219,22 +213,7 @@ const Board = () => {
             }}
           />
         </Box>
-        <Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Button>Add Section</Button>
-            <Typography variant="body2" fontWeight="700">
-              {sections.length}
-            </Typography>
-          </Box>
-          <Divider sx={{ margin: "10px 0" }} />
-          {/* kanban board */}
-        </Box>
+        <Kanban data={sections} boardId={boardId} />
       </Box>
     </>
   );
